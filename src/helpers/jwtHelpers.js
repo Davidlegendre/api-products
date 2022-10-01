@@ -1,6 +1,6 @@
 const JWT = require("jsonwebtoken");
-export function __generarToken(userobject, res) {
-  JWT.sign(
+export async function __generarToken(userobject, res) {
+  await JWT.sign(
     {
       user: userobject,
     },

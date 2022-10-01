@@ -34,7 +34,7 @@ export const login = async (req, res) => {
       res.status(500).json({ msg: "Credenciales invalidos" });
     } else {
       const dataUser = { _id: user._id, email: user.email, name: user.name };
-      __generarToken(dataUser, res);
+      await __generarToken(dataUser, res);
     }
   } catch (error) {
     console.error(error);
