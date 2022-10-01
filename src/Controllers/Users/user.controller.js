@@ -1,13 +1,15 @@
 import userSchema from "../../Models/user.model";
 import { __generarToken, __verificartoken } from "../../helpers/jwtHelpers";
+import { comparePassword, encryptPassword } from "../../helpers/passwordHelper";
 export const register = async (req, res) => {
   try {
     const { email, password, name } = req.body;
     const result = await userSchema.findOne({ email: email });
     if (!result) {
+      const pass = await encryptPassword(password)
       const user = new userSchema({
         email: email,
-        password: password,
+        password: pass,
         name: name,
       });
       await user.save();
@@ -27,7 +29,8 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await userSchema.findOne({ email: email }).select("+password");
-    if (!user || password !== user.password) {
+    const compare = await comparePassword(user.password, password)
+    if (!user || compare === false) {
       res.status(500).json({ msg: "Credenciales invalidos" });
     } else {
       const dataUser = { _id: user._id, email: user.email, name: user.name };
