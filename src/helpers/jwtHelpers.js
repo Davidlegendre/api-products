@@ -9,11 +9,7 @@ export function __generarToken(userobject, res) {
       expiresIn: "1h",
     },
     (err, token) => {
-      
-      res.status(200).json({
-        msg: "Bienvenido",
-        token: token,
-      });
+      res.cookie({"token":token}).json({success:true,message:'LoggedIn Successfully'})      
     }
   );
 }
