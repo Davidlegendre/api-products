@@ -45,7 +45,7 @@ export const getDataUser = async (req, res) => {
   try {
     let token = req.headers['authorization'];
     token = token.replace("Bearer ", "");
-    const data = await __verificartoken(token);
+    const data = __verificartoken(token);
     if (data === undefined) {
       res.status(400).json({
         msg: "token invalido",
@@ -61,3 +61,8 @@ export const getDataUser = async (req, res) => {
     });
   }
 };
+
+
+export const logout = (req, res)=>{
+  
+}

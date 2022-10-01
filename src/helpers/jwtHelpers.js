@@ -6,9 +6,10 @@ export function __generarToken(userobject, res) {
     },
     process.env.SECRET,
     {
-      expiresIn: "1d",
+      expiresIn: "1h",
     },
     (err, token) => {
+      
       res.status(200).json({
         msg: "Bienvenido",
         token: token,
@@ -39,3 +40,4 @@ export const __verificartoken = async (token) => {
     return null;
   }
 };
+
