@@ -12,14 +12,22 @@ export const registerProduct = async (req, res) => {
         msg: "Bearer token invalido",
       });
     } else {
-      const product = new productoSchema({
+      const findproduct = await productoSchema.findOne({
         productName: productName,
-        description: description,
-        price: price,
-        user: data._id,
       });
-      await product.save();
-      res.status(200).json({ product });
+      if (!findproduct) {
+        const product = new productoSchema({
+          productName: productName,
+          description: description,
+          price: price,
+          user: data._id,
+        });
+        await product.save();
+        res.status(200).json({ product });
+      }else
+      {
+        res.status(400).json({msg: "producto ya existe"})
+      }
     }
   } catch (error) {
     console.error(error);
@@ -88,8 +96,7 @@ export const deleteOneProduct = async (req, res) => {
       });
       if (!deleteProduct) {
         res.status(400).json({ msg: "Product not found" });
-      }
-      else{
+      } else {
         res.status(200).json({ msg: "Product deleted" });
       }
     }
