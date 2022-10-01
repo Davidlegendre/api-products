@@ -10,7 +10,7 @@ export function __generarToken(userobject, res) {
     },
     (err, token) => {
 
-      res.cookie("toke",token).json({success:true,message:'LoggedIn Successfully'})      
+      res.cookie("token",token).json({success:true,message:'LoggedIn Successfully'})      
     }
   );
 }
