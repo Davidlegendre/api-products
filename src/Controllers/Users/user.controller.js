@@ -1,4 +1,3 @@
-
 import userSchema from '../../Models/user.model'
 import {__generarToken, __verificartoken} from '../../helpers/jwtHelpers'
 export const register = async (req, res)=>{
