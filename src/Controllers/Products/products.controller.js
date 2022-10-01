@@ -6,7 +6,7 @@ export const registerProduct = async (req, res) => {
     let token = req.headers["authorization"];
     const { productName, description, price } = req.body;
     token = token.replace("Bearer ", "");
-    const data = __verificartoken(token);
+    const data = await __verificartoken(token);
     if (data === undefined) {
       res.status(400).json({
         msg: "Bearer token invalido",
@@ -32,7 +32,7 @@ export const getAllProducts = async (req, res) => {
   try {
     let token = req.headers["authorization"];
     token = token.replace("Bearer ", "");
-    const data =  __verificartoken(token);
+    const data = await __verificartoken(token);
     if (data === undefined) {
       res.status(400).json({
         msg: "Bearer token invalido",
@@ -55,7 +55,7 @@ export const getOneProduct = async (req, res) => {
     let token = req.headers["authorization"];
     const id = req.params.id;
     token = token.replace("Bearer ", "");
-    const data = __verificartoken(token);
+    const data = await __verificartoken(token);
     if (data === undefined) {
       res.status(400).json({
         msg: "Bearer token invalido",
@@ -76,7 +76,7 @@ export const deleteOneProduct = async (req, res) => {
     let token = req.headers["authorization"];
     const id = req.params.id;
     token = token.replace("Bearer ", "");
-    const data = __verificartoken(token);
+    const data = await __verificartoken(token);
     if (data === undefined) {
       res.status(400).json({
         msg: "Bearer token invalido",
@@ -104,7 +104,7 @@ export const updateOneProduct = async (req, res) => {
     const id = req.params.id;
     const { productName, description, price } = req.body;
     token = token.replace("Bearer ", "");
-    const data = __verificartoken(token);
+    const data = await __verificartoken(token);
     if (data === undefined) {
       res.status(400).json({
         msg: "Bearer token invalido",

@@ -9,18 +9,21 @@ export function __generarToken(userobject, res) {
       expiresIn: "1h",
     },
     (err, token) => {
-
-      res.cookie("token",token).json({success:true,message:'LoggedIn Successfully'})      
+      
+      res.status(200).json({
+        msg: "Bienvenido",
+        token: token,
+      });
     }
   );
 }
 
-export const __verificartoken = (token) => {
+export const __verificartoken = async (token) => {
   try {
-    const result = JWT.verify(
+    const result = await JWT.verify(
       token,
       process.env.SECRET,
-      (err, authData) => {
+      async (err, authData) => {
         if (err) {
           return null;
         } else {
