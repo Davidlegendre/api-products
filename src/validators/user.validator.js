@@ -10,12 +10,12 @@ export const ValidateLoginCampos = [
 ];
 
 export const ValidateRegisterCampos =[
-    //nombre, apellido_p, apellido_m, nick, password, correo, telefono, descripcion
     check('name').exists().notEmpty(),
     check('password').exists().notEmpty(),
     check('email').exists().notEmpty().isEmail(),
     (req, res, next) =>
     {
+        console.log(req.body)
         validateResult(req, res, next)
     }
 ];
