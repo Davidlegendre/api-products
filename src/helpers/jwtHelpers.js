@@ -9,7 +9,8 @@ export function __generarToken(userobject, res) {
       expiresIn: "1h",
     },
     (err, token) => {
-      res.cookie({"token":token}).json({success:true,message:'LoggedIn Successfully'})      
+
+      res.cookie({token}).json({success:true,message:'LoggedIn Successfully', token})      
     }
   );
 }
