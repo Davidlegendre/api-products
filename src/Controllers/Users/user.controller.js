@@ -62,7 +62,3 @@ export const getDataUser = async (req, res) => {
   }
 };
 
-
-export const logout = (req, res)=>{
-  
-}
