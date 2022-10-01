@@ -4,7 +4,7 @@ const {validateResult} = require('../helpers/validationHelper');
 export const validarCreateCampos = [
     check('productName').exists().notEmpty(),
     check('description').exists().notEmpty(),
-    check('price').exists().notEmpty().isNumeric()
+    check('price').exists().notEmpty().isNumeric(),
     (res, req, next) => {
         validateResult(res, req, next)
     }
