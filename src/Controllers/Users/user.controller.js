@@ -64,7 +64,7 @@ export const getDataUser = async (req, res) => {
 
 export const logout = async (req, res) =>{
   try {
-    let token = req.cookie
+    let token = req.cookie.token
     res.status(200).json({token})
   } catch (error) {
     console.error(error);
