@@ -10,21 +10,21 @@ export const ValidateLoginCampos = [
 ];
 
 export const ValidateRegisterCampos =[
-    check('email').exists().notEmpty(),
+    check('name').exists().notEmpty(),
     check('password').exists().notEmpty(),
-    check('name').exists().notEmpty().isEmail(),
+    check('email').exists().notEmpty().isEmail(),
     (req, res, next) =>
     {
-        console.log(req.check)
         validateResult(req, res, next)
     }
 ];
 
 export const validateToken = [
     (req, res, next) => {
-        const token = req.headers['authorization']
+       const token = req.headers['authorization']
        if(typeof token !== undefined)
        {
+        req.headers['authorization'] = token
         next();
        }else{
            res.status(403);

@@ -1,22 +1,41 @@
 const JWT = require("jsonwebtoken");
-export function __generarToken(userobject) {
-    JWT.sign({
-        user: userobject
-    }, process.env.SECRET, {
-        expiresIn: "1d"
-    }, (err, token) => {
-        console.error(err)
-        return token;
-    });
+export function __generarToken(userobject, res) {
+  JWT.sign(
+    {
+      user: userobject,
+    },
+    process.env.SECRET,
+    {
+      expiresIn: "1d",
+    },
+    (err, token) => {
+      res.status(200).json({
+        msg: "Bienvenido",
+        token: token,
+      });
+    }
+  );
 }
 
-export function __verificartoken(token){
-    JWT.verify(token, process.env.SECRET, async (err, authData) =>{
-        if(err)
-        {
-            console.error(err)
-            return null
+export const __verificartoken = async (token) => {
+  try {
+    const result = await JWT.verify(
+      token,
+      process.env.SECRET,
+      async (err, authData) => {
+        if (err) {
+          return null;
+        } else {
+          return authData;
         }
-        return authData
-    })
-}
+      }
+    );
+    if (result !== null) {
+        
+      return result.user;
+    }
+  } catch (error) {
+    console.error(error)
+    return null;
+  }
+};

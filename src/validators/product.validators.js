@@ -23,6 +23,7 @@ export const validateIDParams = [
        const id = req.params.id;
        if(typeof id !== undefined)
        {
+        req.params.id = id
           next();
        }else{
            res.status(403);

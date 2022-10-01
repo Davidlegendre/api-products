@@ -5,9 +5,9 @@ import { validateToken } from "../validators/user.validator";
 const router = Router()
 
 router.get("/", validateToken, getAllProducts)
-router.get("/:id", validateToken, validateIDParams, getOneProduct)
 router.post("/create", validateToken, validarCreateCampos, registerProduct)
-router.delete("/:id", validateToken, validateIDParams, deleteOneProduct)
-router.patch("/:id", validateToken, validateIDParams, validarUpdateCampos, updateOneProduct)
+router.get("/getone/:id", validateToken, validateIDParams, getOneProduct)
+router.delete("/delete/:id", validateToken, validateIDParams, deleteOneProduct)
+router.patch("/update/:id", validateToken, validateIDParams, validarUpdateCampos, updateOneProduct)
 
 export default router
