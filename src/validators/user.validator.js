@@ -1,18 +1,18 @@
-const {check} = require("express-validator");
+const {body} = require("express-validator");
 const {validateResult} = require('../helpers/validationHelper');
 
 export const ValidateLoginCampos = [
-    check('email').exists({checkNull: true, checkFalsy: true}).notEmpty(),
-    check('password').exists({checkNull: true, checkFalsy: true}).notEmpty(),
+    body('email').exists({checkNull: true, checkFalsy: true}).notEmpty(),
+    body('password').exists({checkNull: true, checkFalsy: true}).notEmpty(),
     (req, res, next) => {
         validateResult(req, res, next)
     }
 ];
 
 export const ValidateRegisterCampos =[
-    check('name').exists().notEmpty(),
-    check('password').exists().notEmpty(),
-    check('email').exists().notEmpty().isEmail(),
+    body('name').exists().notEmpty(),
+    body('password').exists().notEmpty(),
+    body('email').exists().notEmpty().isEmail(),
     (req, res, next) =>
     {
         console.log(req.body)
