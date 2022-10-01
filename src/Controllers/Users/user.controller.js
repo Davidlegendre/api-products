@@ -29,7 +29,7 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await userSchema.findOne({ email: email }).select("+password");
-    const compare = await comparePassword(user.password, password)
+    const compare = await comparePassword(password, user.password)
     if (!user || compare === false) {
       res.status(500).json({ msg: "Credenciales invalidos" });
     } else {

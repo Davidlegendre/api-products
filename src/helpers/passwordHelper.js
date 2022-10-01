@@ -4,6 +4,6 @@ export const encryptPassword = async (password)=>{
     return await bcrypt.hash(password, salt)
 }
 
-export const comparePassword = async (passwordDB, password) =>{
-    return await bcrypt.compare(passwordDB, password)
+export const comparePassword = async (password, passwordDB) =>{
+    return await bcrypt.compare(password, passwordDB)
 }
