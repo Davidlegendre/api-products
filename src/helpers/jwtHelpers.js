@@ -18,12 +18,12 @@ export function __generarToken(userobject, res) {
   );
 }
 
-export const __verificartoken = async (token) => {
+export const __verificartoken = (token) => {
   try {
-    const result = await JWT.verify(
+    const result = JWT.verify(
       token,
       process.env.SECRET,
-      async (err, authData) => {
+      (err, authData) => {
         if (err) {
           return null;
         } else {
