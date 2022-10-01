@@ -14,6 +14,7 @@ export const registerProduct = async (req, res) => {
     } else {
       const findproduct = await productoSchema.findOne({
         productName: productName,
+        user: data._id,
       });
       if (!findproduct) {
         const product = new productoSchema({
