@@ -15,7 +15,7 @@ export const register = async (req, res) => {
       await user.save();
       res.status(200).json({ msg: "usuario registrado" });
     } else {
-      res.status(500).json({ msg: "usuario ya existe" });
+      res.status(400).json({ msg: "usuario ya existe" });
     }
   } catch (error) {
     console.error(error);
